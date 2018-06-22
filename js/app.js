@@ -233,6 +233,9 @@ function newGame() {
 }
 
 function restartGame() {
+  while (flippedCards.length > 0) {
+    flippedCards.pop();
+  }
   let theseCards = document.querySelectorAll('.card');
   theseCards.forEach(function(card) {
     if (card.classList.contains('match')) {
