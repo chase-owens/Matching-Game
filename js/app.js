@@ -230,7 +230,6 @@ function startTimer() {
 function stopTimer() {
   clearInterval(count);
   isCounting = false;
-  timer.style.paddingLeft = "0";
 }
 
 //new game that resets board and displays
@@ -243,6 +242,7 @@ function newGame() {
   seconds = 0;
   minutes = 0;
   timer.innerText = "";
+  timer.style.paddingLeft = "0";
 
 
   stars.forEach(function(star) {
