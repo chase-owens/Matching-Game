@@ -25,39 +25,52 @@ let cards = document.querySelectorAll('.card'),
     minutes = 0,
     numberOfStars = 5.0;
 
+//putting eventlisteners for cards so it can be called when new cards are dealt
 function gameReady() {
   let theCards = document.querySelectorAll('.card');
   theCards.forEach(function(card) {
     card.addEventListener('click', function() {
 
+      //start timer when card is clicked
       setTimer();
 
       //this conditional was constructed after reading a Slack question by Winnie H and subsequent answers from Juan L
       if (flippedCards.length < 2) {
-
+        
+        //if the card is eligible to flip, flip it
         if (!card.classList.contains('open') && !card.classList.contains('match')) {
           flippedCards.push(card);
           card.classList.add('show', 'open');
 
+          //if two cards are flipped,
           if (flippedCards.length == 2) {
 
+            //add a move to number of moves
             updateMoves();
 
+            //getting variables to compare to decide if cards match or not
             let firstCardType = flippedCards[0].querySelector('i').classList.item(1);
             let secondCardType = flippedCards[1].querySelector('i').classList.item(1);
 
             // Do the cards match???
             if (firstCardType === secondCardType) {
               flippedCards.forEach(function(card) {
+                
+                //add match class to card and keep face up
                 flippedCards[0].classList.add('match');
                 flippedCards[1].classList.add('match');
+                
+                //unflip cards
                 while (flippedCards.length > 0) {
                   flippedCards.pop();
                 }
+                
+                //keeping track of matches
                 updateMatches();
               });
 
             } else {
+              //function to turn cards back over if they do not match
               setTimeout(function() {
                 flippedCards.forEach(function(card) {
                   card.classList.remove('show', 'open');
@@ -96,6 +109,7 @@ function updateMoves() {
     movesPTag.innerText = numberOfMoves + " Move";
   }
 
+  //once user reaches 18 moves, lose 1/2 star for each move
   switch (numberOfMoves) {
     case 18:
       fifthStar.classList.add('fa-star-half-full');
@@ -147,6 +161,7 @@ function updateMoves() {
   }
 }
 
+//function to track matches. When all cards are matched, timer is stopped and modal appears
 function updateMatches() {
   numberOfMatches += 1;
   if (numberOfMatches == 8) {
@@ -157,6 +172,7 @@ function updateMatches() {
     let newGameButton = document.querySelector('.submit-button');
     let observeButton = document.querySelector('.cancel-button');
 
+    //win comment depending on how long it took user to complete game
     if (minutes == 0) {
       winComment.innerText = "You matched all of the cards in " + seconds + " seconds and only " + numberOfMoves + " moves! \n\nThat is a " + numberOfStars + "-star performance! \n\nWould you like to observe and admire your performance or start a new game?";
     } else if (minutes == 1) {
@@ -165,10 +181,12 @@ function updateMatches() {
       winComment.innerText = "You matched all of the cards in " + minutes + " minutes and " + seconds + " seconds and only " + numberOfMoves + " moves! \n\nThat is a " + numberOfStars + "-star performance! \n\nWould you like to observe and admire your performance or start a new game?";
     }
 
+    //close modal
     observeButton.addEventListener('click', function() {
       modal.style.display = "none";
     });
 
+    //if user selects new game, modal is removed, stars, number of moves, and timer is reset, cards are flipped back over and reshuffled, then the event listener for each card is readded
     newGameButton.addEventListener('click', function() {
       modal.style.display = "none";
       newGame();
@@ -179,6 +197,7 @@ function updateMatches() {
   }
 }
 
+//set timer if timer has not ben set, set timer to execute code every 1000 miliseconds
 function setTimer() {
   if (isCounting == false) {
     count = setInterval(startTimer, 1000);
@@ -186,6 +205,7 @@ function setTimer() {
   isCounting = true;
 }
 
+//start timer add second every execution, when 60 seconds have accumulated, add minute and reset seconds, and set timer text to display minutes and seconds
 function startTimer() {
   timer.style.paddingLeft = "5px";
   seconds += 1;
@@ -206,12 +226,14 @@ function startTimer() {
   }
 }
 
+//function to stop timer
 function stopTimer() {
   clearInterval(count);
   isCounting = false;
   timer.style.paddingLeft = "0";
 }
 
+//new game that resets board and displays
 function newGame() {
   stopTimer();
   numberOfMoves = 0;
@@ -232,6 +254,7 @@ function newGame() {
   });
 }
 
+//function that reflips cards so user can restart the current game
 function restartGame() {
   while (flippedCards.length > 0) {
     flippedCards.pop();
@@ -249,16 +272,19 @@ function restartGame() {
   });
 }
 
+//restart button event listener - calls newgame and restart game function - does not shuffle deck
 restart.addEventListener('click', function() {
   newGame();
   restartGame();
 });
 
+//function to shuffle deck
 function newDeck() {
   removeOldCards();
   createCard();
 }
 
+//function to remove old cards 
 function removeOldCards() {
   cards.forEach(function(card) {
     card.parentNode.removeChild(card);
