@@ -18,7 +18,7 @@ In this project a [starter template](https://github.com/udacity/fend-project-mem
 
 ## To Play 
 
-Click (this link)[https://chase-owens.github.io/Matching-Game/] or download the zip file and open the index.html file in your browser.
+Click [this link](https://chase-owens.github.io/Matching-Game/) or download the zip file and open the index.html file in your browser.
 
 ## Disclaimer
 
