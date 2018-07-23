@@ -16,6 +16,10 @@ In this project a [starter template](https://github.com/udacity/fend-project-mem
 
 ![The Match](https://farm2.staticflickr.com/1797/29075244778_0aa75be8a9_h.jpg)
 
+## To Play 
+
+Click (this link)[https://chase-owens.github.io/Matching-Game/] or download the zip file and open the index.html file in your browser.
+
 ## Disclaimer
 
 This repository is not for general use, rather for display, as this was a part of an instructional program.
