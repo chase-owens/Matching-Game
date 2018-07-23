@@ -4,7 +4,7 @@ Project in Udacity Front-End Nanodegree Program
 
 ## Concentration - Matching Game
 
-In this project, a [starter template](https://github.com/udacity/fend-project-memory-game) with preformatted HTML and CSS was provided to display a static version of the Memory Game project. [Instructions](https://classroom.udacity.com/me) were to build the game's functionality.
+In this project, a [starter template](https://github.com/udacity/fend-project-memory-game) with preformatted HTML and CSS was provided to display a static version of the Memory Game project. [Instructions](https://classroom.udacity.com/me) were to build the game's functionality and to make it responsive.
 
 ## The Game
 
